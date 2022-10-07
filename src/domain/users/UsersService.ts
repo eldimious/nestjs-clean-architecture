@@ -3,6 +3,7 @@ import { CreateUserDto } from "../../presentation/http/routes/users/dto/request/
 import { User } from "./User";
 import { IUsersRepository } from "./IUsersRepository";
 import { IUsersService } from "./IUsersService";
+import {IGetUserQuery} from "../../data/repositories/users/UsersRepository";
 
 @Injectable()
 export class UsersService implements IUsersService {
@@ -13,5 +14,10 @@ export class UsersService implements IUsersService {
   async createUser(user: CreateUserDto): Promise<User> {
     this.logger.log(`Saving a user`);
     return await this.usersRepository.create(user);
+  }
+
+  async getUser(query: Partial<IGetUserQuery>): Promise<User> {
+    this.logger.log(`Try to fetch a user with query: ${query}`);
+    return await this.usersRepository.get(query);
   }
 }
