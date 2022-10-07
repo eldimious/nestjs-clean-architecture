@@ -1,4 +1,4 @@
-import {UsersModule} from "./data/infrastructure/ioc/users.module";
+import {UsersModule} from "./data/infrastructure/ioc/users/users.module";
 import { ConfigModule } from '@nestjs/config';
 import configuration from "./configuration";
 import {Module} from "@nestjs/common";
