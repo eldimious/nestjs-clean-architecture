@@ -1,0 +1,55 @@
+{
+  "name": "nestjs-clean-architecture",
+  "version": "1.0.0",
+  "description": "",
+  "main": "index.js",
+  "scripts": {
+    "debug": "nodemon src/server.js",
+    "start": "node dist/server.js",
+    "build": "tsc",
+    "dev": "npx ts-node src/server.ts",
+    "test": "mocha tests --recursive --timeout 15000 --exit"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/eldimious/nestjs-clean-architecture.git"
+  },
+  "author": "Dimos Botsaris <botsaris.d@gmail.com>",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/eldimious/nestjs-clean-architecture/issues"
+  },
+  "homepage": "https://github.com/eldimious/nestjs-clean-architecture#readme",
+  "dependencies": {
+    "@nestjs/common": "^9.1.4",
+    "@nestjs/config": "^2.2.0",
+    "@nestjs/core": "^9.1.4",
+    "@nestjs/mongoose": "^9.2.0",
+    "@nestjs/platform-express": "^9.1.4",
+    "@nestjs/swagger": "^6.1.2",
+    "@types/compression": "^1.7.2",
+    "class-validator": "^0.13.2",
+    "compression": "^1.7.4",
+    "express-rate-limit": "^6.6.0",
+    "helmet": "^6.0.0",
+    "mongoose": "^6.6.5",
+    "reflect-metadata": "^0.1.13",
+    "rxjs": "^7.5.7",
+    "swagger-ui-express": "^4.5.0"
+  },
+  "devDependencies": {
+    "@nestjs/cli": "^9.1.4",
+    "@types/express": "^4.17.14",
+    "@types/jest": "^29.1.2",
+    "@types/node": "^18.8.3",
+    "@typescript-eslint/eslint-plugin": "^5.9.1",
+    "@typescript-eslint/parser": "^5.9.1",
+    "eslint": "^8.6.0",
+    "eslint-config-airbnb": "^19.0.4",
+    "eslint-config-airbnb-typescript": "^16.1.0",
+    "eslint-plugin-prettier": "^4.0.0",
+    "ts-jest": "^29.0.3",
+    "ts-node": "^10.9.1",
+    "typescript": "^4.8.4"
+  }
+}
