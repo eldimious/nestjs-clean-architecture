@@ -1,15 +1,15 @@
-import { Controller, Post, Body } from '@nestjs/common';
+import {Controller, Post, Body, Inject} from '@nestjs/common';
 import {
   ApiOperation,
   ApiCreatedResponse,
 } from '@nestjs/swagger';
 import { UserResponseDto } from "./dto/response/UserResponseDto";
 import { CreateUserDto } from "./dto/request/CreateUserDto";
-import {UsersService} from "../../../../domain/users/UsersService";
+import { IUsersService } from "../../../../domain/users/IUsersService";
 
 @Controller('users')
 export class UsersController {
-  constructor(private readonly usersService: UsersService) {}
+  constructor(@Inject('IUsersService') private readonly usersService: IUsersService) { }
 
   @Post()
   @ApiOperation({

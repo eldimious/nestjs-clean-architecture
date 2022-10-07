@@ -1,7 +1,6 @@
 import { Logger } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
-import { SwaggerModule, DocumentBuilder } from '@nestjs/swagger';
 import bodyParser from 'body-parser';
 import chalk from 'chalk';
 import compression from 'compression';
@@ -18,12 +17,6 @@ async function bootstrap() {
       cors: true,
     });
     const configService = app.get(ConfigService);
-    Logger.log(
-      `Environment: ${chalk
-        .hex('#87e8de')
-        .bold(`${process.env.NODE_ENV?.toUpperCase()}`)}`,
-      'Bootstrap',
-    );
 
     app.use(helmet());
     app.use(compression());
@@ -49,25 +42,24 @@ async function bootstrap() {
     // app.useGlobalFilters(new HttpExceptionFilter());
     // app.useGlobalPipes(new ValidationPipe());
 
-    const APP_NAME = configService.get('APP_NAME');
-    const APP_DESCRIPTION = configService.get('APP_DESCRIPTION');
-    const API_VERSION = configService.get('API_VERSION', 'v1');
-    const options = new DocumentBuilder()
-      .setTitle(APP_NAME)
-      .setDescription(APP_DESCRIPTION)
-      .setVersion(API_VERSION)
-      .build();
+    // const APP_NAME = configService.get('APP_NAME');
+    // const APP_DESCRIPTION = configService.get('APP_DESCRIPTION');
+    // const API_VERSION = configService.get('API_VERSION', 'v1');
+    // const options = new DocumentBuilder()
+    //   .setTitle(APP_NAME)
+    //   .setDescription(APP_DESCRIPTION)
+    //   .setVersion(API_VERSION)
+    //   .build();
 
-    const document = SwaggerModule.createDocument(app, options);
-    SwaggerModule.setup('api', app, document);
-    SwaggerModule.setup('/', app, document);
-
-    Logger.log('Mapped {/, GET} Swagger api route', 'RouterExplorer');
-    Logger.log('Mapped {/api, GET} Swagger api route', 'RouterExplorer');
-
-    const HOST = configService.get('HOST', 'localhost');
-    const PORT = configService.get('PORT', '3000');
-    Logger.log("congggg", configService.get('httpPort'))
+    //const document = SwaggerModule.createDocument(app, options);
+    // SwaggerModule.setup('api', app, document);
+    // SwaggerModule.setup('/', app, document);
+    //
+    // Logger.log('Mapped {/, GET} Swagger api route', 'RouterExplorer');
+    // Logger.log('Mapped {/api, GET} Swagger api route', 'RouterExplorer');
+    //
+    const HOST = configService.get('host', 'localhost');
+    const PORT = configService.get('httpPort');
     Logger.log('Port:', PORT);
 
     await app.listen(PORT);

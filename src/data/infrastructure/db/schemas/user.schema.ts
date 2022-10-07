@@ -1,14 +1,15 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
+import { User } from "../../../../domain/users/User";
 
-export type UserDocument = User & Document;
+export type UserDocument = UserEntity & Document;
 
 export interface IUserEntity extends UserDocument {
   toUser(): User;
 }
 
 @Schema()
-export class User {
+export class UserEntity {
   @Prop({type : String, required: true})
     // @ts-ignore
   firstName: string;
@@ -30,4 +31,8 @@ export class User {
   email: string;
 }
 
-export const UserSchema = SchemaFactory.createForClass(User);
+export const UserSchema = SchemaFactory.createForClass(UserEntity);
+
+UserSchema.methods.toUser = function toUser(): User {
+  return new User(this._id, this.firstName, this.lastName, this.username, this.email, this.password, this.created);
+};

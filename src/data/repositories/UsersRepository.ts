@@ -8,13 +8,10 @@ import {CreateUserDto} from "../../presentation/http/routes/users/dto/request/Cr
 
 @Injectable()
 export class UsersRepository implements IUsersRepository {
-  constructor(@InjectModel('User') private readonly userDocumentModel: Model<IUserEntity>) {
-  }
+  constructor(@InjectModel('User') private readonly userDocumentModel: Model<IUserEntity>) {}
 
   async create(item: CreateUserDto): Promise<User> {
-    const newDoc = await new this.userDocumentModel(item).save();
-    // @ts-ignore
-    return newDoc.toUser();
+    const doc = await new this.userDocumentModel(item).save();
+    return doc.toUser();
   }
-
 }
