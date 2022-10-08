@@ -1,7 +1,7 @@
-import { UserResponseDto } from '../../presentation/http/routes/users/dto/response/UserResponseDto';
+import { IUserResponseDto } from '../../presentation/http/routes/users/dto/response/IUserResponseDto';
 
 export class User {
-  readonly id: string;
+  readonly userId: string;
 
   readonly firstName: string;
 
@@ -16,7 +16,7 @@ export class User {
   readonly created: Date;
 
   constructor(_id: string, firstName: string, lastName: string, username: string, email: string, password: string, created: Date) {
-    this.id = _id;
+    this.userId = _id;
     this.firstName = firstName;
     this.lastName = lastName;
     this.username = username;
@@ -25,7 +25,14 @@ export class User {
     this.created = created;
   }
 
-  toUserResponse(): UserResponseDto {
-    return new UserResponseDto(this.id, this.firstName, this.lastName, this.username, this.email, this.created);
+  toUserResponse(): IUserResponseDto {
+    return {
+      userId: this.userId,
+      firstName: this.firstName,
+      lastName: this.lastName,
+      username: this.username,
+      email: this.email,
+      created: this.created,
+    } as IUserResponseDto;
   }
 }
