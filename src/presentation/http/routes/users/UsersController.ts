@@ -1,18 +1,20 @@
-import {Controller, Post, Body, Inject, Get, Param} from '@nestjs/common';
+import {
+  Controller, Post, Body, Inject, Get, Param,
+} from '@nestjs/common';
 import {
   ApiOperation,
   ApiCreatedResponse,
 } from '@nestjs/swagger';
-import { UserResponseDto } from "./dto/response/UserResponseDto";
-import { CreateUserDto } from "./dto/request/CreateUserDto";
-import {IAuthService} from "../../../../domain/auth/IAuthService";
-import {IUsersService} from "../../../../domain/users/IUsersService";
+import { UserResponseDto } from './dto/response/UserResponseDto';
+import { CreateUserDto } from './dto/request/CreateUserDto';
+import { IAuthService } from '../../../../domain/auth/IAuthService';
+import { IUsersService } from '../../../../domain/users/IUsersService';
 
 @Controller('users')
 export class UsersController {
   constructor(
     @Inject('IAuthService') private readonly authService: IAuthService,
-    @Inject('IUsersService') private readonly usersService: IUsersService
+    @Inject('IUsersService') private readonly usersService: IUsersService,
   ) { }
 
   @Post()

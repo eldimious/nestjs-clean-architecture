@@ -1,5 +1,5 @@
 import { IsNotEmpty, IsString, IsEmail } from 'class-validator';
-import { ApiProperty } from "@nestjs/swagger";
+import { ApiProperty } from '@nestjs/swagger';
 
 export class CreateUserDto {
   @IsString()
@@ -9,7 +9,7 @@ export class CreateUserDto {
     example: 'Dimos',
   })
     // @ts-ignore
-  firstName: string;
+    firstName: string;
 
   @IsString()
   @IsNotEmpty()
@@ -17,8 +17,8 @@ export class CreateUserDto {
     description: 'The lastName of the user',
     example: 'Botsaris',
   })
-  // @ts-ignore
-  lastName: string;
+    // @ts-ignore
+    lastName: string;
 
   @IsString()
   @IsNotEmpty()
@@ -27,7 +27,7 @@ export class CreateUserDto {
     example: 'eldimious',
   })
     // @ts-ignore
-  username: string;
+    username: string;
 
   @IsString()
   @IsNotEmpty()
@@ -37,7 +37,7 @@ export class CreateUserDto {
     example: 'test@gmail.com',
   })
     // @ts-ignore
-  email: string;
+    email: string;
 
   @IsString()
   @IsNotEmpty()
@@ -46,5 +46,5 @@ export class CreateUserDto {
     example: 'test',
   })
     // @ts-ignore
-  password: string;
+    password: string;
 }

@@ -6,7 +6,6 @@ import chalk from 'chalk';
 import compression from 'compression';
 import rateLimit from 'express-rate-limit';
 import helmet from 'helmet';
-
 import { AppModule } from './app.module';
 
 declare const module: any;

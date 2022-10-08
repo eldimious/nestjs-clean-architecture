@@ -1,4 +1,4 @@
-import { UserResponseDto } from "../../presentation/http/routes/users/dto/response/UserResponseDto";
+import { UserResponseDto } from '../../presentation/http/routes/users/dto/response/UserResponseDto';
 
 export class User {
   readonly id: string;

@@ -1,6 +1,6 @@
 import { Prop, Schema, SchemaFactory } from '@nestjs/mongoose';
 import { Document } from 'mongoose';
-import { User } from "../../../../domain/users/User";
+import { User } from '../../../../domain/users/User';
 
 export type UserDocument = UserEntity & Document;
 
@@ -10,25 +10,25 @@ export interface IUserEntity extends UserDocument {
 
 @Schema()
 export class UserEntity {
-  @Prop({type : String, required: true})
+  @Prop({ type: String, required: true })
     // @ts-ignore
-  firstName: string;
+    firstName: string;
 
-  @Prop({type : String, required: true})
+  @Prop({ type: String, required: true })
     // @ts-ignore
-  lastName: string;
+    lastName: string;
 
-  @Prop({type : String, required: true})
+  @Prop({ type: String, required: true })
     // @ts-ignore
-  username: string;
+    username: string;
 
-  @Prop({type : String, required: true})
+  @Prop({ type: String, required: true })
     // @ts-ignore
-  password: string;
+    password: string;
 
-  @Prop({type : String, required: true, unique: true})
+  @Prop({ type: String, required: true, unique: true })
     // @ts-ignore
-  email: string;
+    email: string;
 }
 
 export const UserSchema = SchemaFactory.createForClass(UserEntity);
