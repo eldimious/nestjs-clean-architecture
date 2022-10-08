@@ -3,7 +3,6 @@ import {
 } from '@nestjs/common';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
-import { ConfigService } from '@nestjs/config';
 import { IAuthRepository } from '../../../domain/auth/IAuthRepository';
 import { User } from '../../../domain/users/User';
 import { Token } from '../../../domain/auth/Token';
@@ -13,10 +12,6 @@ const SALT_ROUNDS = 10;
 
 @Injectable()
 export class AuthRepository implements IAuthRepository {
-  constructor(
-    private configService: ConfigService,
-  ) {}
-
   private readonly logger = new Logger(AuthRepository.name);
 
   async comparePassword(password: string, dbPassword: string): Promise<boolean> {
@@ -38,14 +33,14 @@ export class AuthRepository implements IAuthRepository {
 
   async createUserToken(user: User): Promise<Token> {
     this.logger.log('Create user token called');
-    const jwtSecret = this.configService.get<string>('jwtSecret') as string;
+    const jwtSecret = process.env.JWT_SECRET as string;
     const token = {
       accessToken: jwt.sign({
         email: user.email,
         firstName: user.firstName,
         lastName: user.lastName,
         username: user.username,
-        id: user.id,
+        id: user.userId,
         roles: [USER_ROLE],
       }, jwtSecret, {
         expiresIn: USER_TOKEN_EXPIRATION,
