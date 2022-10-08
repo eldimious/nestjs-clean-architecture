@@ -1,11 +1,13 @@
-import {HttpException, HttpStatus, Injectable, Logger} from "@nestjs/common";
+import {
+  HttpException, HttpStatus, Injectable, Logger,
+} from '@nestjs/common';
 import jwt from 'jsonwebtoken';
 import bcrypt from 'bcryptjs';
-import {IAuthRepository} from "../../../domain/auth/IAuthRepository";
-import {User} from "../../../domain/users/User";
-import {Token} from "../../../domain/auth/Token";
 import { ConfigService } from '@nestjs/config';
-import {USER_ROLE, USER_TOKEN_EXPIRATION} from "../../../common/contants";
+import { IAuthRepository } from '../../../domain/auth/IAuthRepository';
+import { User } from '../../../domain/users/User';
+import { Token } from '../../../domain/auth/Token';
+import { USER_ROLE, USER_TOKEN_EXPIRATION } from '../../../common/constants';
 
 const SALT_ROUNDS = 10;
 
@@ -14,6 +16,7 @@ export class AuthRepository implements IAuthRepository {
   constructor(
     private configService: ConfigService,
   ) {}
+
   private readonly logger = new Logger(AuthRepository.name);
 
   async comparePassword(password: string, dbPassword: string): Promise<boolean> {

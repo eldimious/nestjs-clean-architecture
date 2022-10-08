@@ -1,8 +1,8 @@
-import {UsersModule} from "./data/infrastructure/ioc/users/users.module";
 import { ConfigModule } from '@nestjs/config';
-import configuration from "./configuration";
-import {Module} from "@nestjs/common";
-import {MongooseModule} from "@nestjs/mongoose";
+import { Module } from '@nestjs/common';
+import { MongooseModule } from '@nestjs/mongoose';
+import configuration from './configuration';
+import { UsersModule } from './data/infrastructure/ioc/users/users.module';
 
 @Module({
   imports: [
@@ -14,13 +14,11 @@ import {MongooseModule} from "@nestjs/mongoose";
     }),
     MongooseModule.forRootAsync({
       imports: [ConfigModule],
-      useFactory: async () => {
-        return {
-          uri: configuration().database.url,
-          useNewUrlParser: true,
-          useUnifiedTopology: true
-        }
-      },
+      useFactory: async () => ({
+        uri: configuration().database.url,
+        useNewUrlParser: true,
+        useUnifiedTopology: true,
+      }),
     }),
   ],
 })

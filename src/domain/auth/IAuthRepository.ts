@@ -1,5 +1,5 @@
-import { User } from "../users/User";
-import {Token} from "./Token";
+import { User } from '../users/User';
+import { Token } from './Token';
 
 export interface IAuthRepository {
   comparePassword(password: string, dbPassword: string): Promise<boolean>
