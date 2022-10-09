@@ -1,4 +1,4 @@
-import { IPagination } from '../../common/interfaces/IPagination';
+import { IPagination } from '../../common/dto/IPagination';
 import { IPostResponseDto } from '../../presentation/http/routes/posts/dto/response/IPostResponseDto';
 
 export class Post {

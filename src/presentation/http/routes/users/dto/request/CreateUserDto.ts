@@ -8,7 +8,6 @@ export class CreateUserDto {
     description: 'The firstName of the user',
     example: 'Dimos',
   })
-    // @ts-ignore
     firstName: string;
 
   @IsString()
@@ -17,7 +16,6 @@ export class CreateUserDto {
     description: 'The lastName of the user',
     example: 'Botsaris',
   })
-    // @ts-ignore
     lastName: string;
 
   @IsString()
@@ -26,7 +24,6 @@ export class CreateUserDto {
     description: 'The username of the user',
     example: 'eldimious',
   })
-    // @ts-ignore
     username: string;
 
   @IsString()
@@ -36,7 +33,6 @@ export class CreateUserDto {
     description: 'The unique email of the user',
     example: 'test@gmail.com',
   })
-    // @ts-ignore
     email: string;
 
   @IsString()
@@ -45,6 +41,5 @@ export class CreateUserDto {
     description: 'The password of the user',
     example: 'test',
   })
-    // @ts-ignore
     password: string;
 }

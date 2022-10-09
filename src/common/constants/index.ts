@@ -12,6 +12,6 @@ export const MAX_CONSECUTIVE_FAILS_BY_USERNAME = 10;
 export const PRODUCTION_ENV = 'production';
 export const VERBOSE_LOGGING_LVL = 'verbose';
 export const INFO_LOGGING_LVL = 'info';
-export const DEFAULT_PAGINATION_LIMIT = 25;
+export const DEFAULT_PAGINATION_LIMIT = 33;
 export const MAX_PAGINATION_LIMIT = 100;
 export const DEFAULT_PAGINATION_PAGE = 1;

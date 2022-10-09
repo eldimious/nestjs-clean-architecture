@@ -5,16 +5,16 @@ import {
 } from 'mongoose';
 import { IPaginatedPosts, Post } from '../../../domain/posts/Post';
 import { CreateUserPostDto } from '../../../presentation/http/routes/posts/dto/request/CreateUserPostDto';
-import { IListPostsQueryDto } from '../../../presentation/http/routes/posts/dto/request/IListPostsQueryDto';
+import { ListUserPostsQueryDto } from '../../../presentation/http/routes/posts/dto/request/ListPostsQueryDto';
 import { IPostEntity, PostSchema } from '../../infrastructure/db/schemas';
 
-const getPaginationOptions = (query: IListPostsQueryDto): PaginateOptions => ({
-  page: query.page || 1,
-  limit: query.limit || 25,
+const getPaginationOptions = (query: ListUserPostsQueryDto): PaginateOptions => ({
+  page: query.page,
+  limit: query.limit,
   sort: { created: -1 },
 });
 
-const getQueryObject = (query: IListPostsQueryDto) => {
+const getQueryObject = (query: ListUserPostsQueryDto) => {
   const queries: FilterQuery<typeof PostSchema> = {
     userId: query.userId,
   };
@@ -65,7 +65,7 @@ export class PostsDataStore {
     return postModel.toPost();
   }
 
-  async list(query: IListPostsQueryDto): Promise<IPaginatedPosts> {
+  async list(query: ListUserPostsQueryDto): Promise<IPaginatedPosts> {
     // @ts-ignore
     const docs = await this.postDocumentModel.paginate(getQueryObject(query), getPaginationOptions(query));
     return handleUsersPaginationResponse(docs);

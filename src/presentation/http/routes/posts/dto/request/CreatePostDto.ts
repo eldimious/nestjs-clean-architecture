@@ -1,4 +1,3 @@
-/* eslint-disable max-classes-per-file */
 import { ApiProperty } from '@nestjs/swagger';
 import { IsString, IsNotEmpty } from 'class-validator';
 
@@ -6,27 +5,24 @@ export class CreatePostDto {
   @IsString()
   @IsNotEmpty()
   @ApiProperty({
-    description: 'The firstName of the user',
-    example: 'Dimos',
+    description: 'The image url of the post',
+    example: 'https://media.xxxxxxxx.com/',
   })
-    // @ts-ignore
     imageUrl: string;
 
   @IsString()
   @IsNotEmpty()
   @ApiProperty({
-    description: 'The firstName of the user',
-    example: 'Dimos',
+    description: 'The description of the post',
+    example: 'This post refers to.',
   })
-    // @ts-ignore
     description: string;
 
   @IsString()
   @IsNotEmpty()
   @ApiProperty({
-    description: 'The firstName of the user',
-    example: 'tw',
+    description: 'The publisher of the post',
+    example: 'eldimious',
   })
-    // @ts-ignore
     publisher: string;
 }

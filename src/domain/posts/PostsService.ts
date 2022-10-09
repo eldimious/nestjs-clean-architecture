@@ -1,7 +1,7 @@
 import { Inject, Injectable, Logger } from '@nestjs/common';
 import { IPostsService } from './IPostsService';
 import { IPaginatedPosts, Post } from './Post';
-import { IListPostsQueryDto } from '../../presentation/http/routes/posts/dto/request/IListPostsQueryDto';
+import { ListUserPostsQueryDto } from '../../presentation/http/routes/posts/dto/request/ListPostsQueryDto';
 import { IPostsRepository } from './IPostsRepository';
 import { CreateUserPostDto } from '../../presentation/http/routes/posts/dto/request/CreateUserPostDto';
 
@@ -16,7 +16,7 @@ export class PostsService implements IPostsService {
     return this.postsRepository.create(createPostDto);
   }
 
-  async listUserPosts(query: IListPostsQueryDto): Promise<IPaginatedPosts> {
+  async listUserPosts(query: ListUserPostsQueryDto): Promise<IPaginatedPosts> {
     this.logger.log(`Try to fetch posts with query: ${query}`);
     return this.postsRepository.list(query);
   }

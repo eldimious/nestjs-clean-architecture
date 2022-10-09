@@ -4,6 +4,7 @@ import {
 import { IUserResponseDto } from './dto/response/IUserResponseDto';
 import { IUsersService } from '../../../../domain/users/IUsersService';
 import { JwtAuthGuard } from '../../middleware/JwtStrategy';
+import {GetUserQueryDto} from "./dto/request/GetUserQueryDto";
 
 @Controller('users')
 export class UsersController {
@@ -14,7 +15,9 @@ export class UsersController {
   @UseGuards(JwtAuthGuard)
   @Get('me')
   async getMe(@Req() req: any): Promise<IUserResponseDto> {
-    const newUser = await this.usersService.getUser({ userId: req.user.userId });
+    const query = new GetUserQueryDto();
+    query.userId = req.user.userId;
+    const newUser = await this.usersService.getUser(query);
     return newUser.toUserResponse();
   }
 }
