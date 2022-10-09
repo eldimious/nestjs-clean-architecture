@@ -1,8 +1,8 @@
 import { CreateUserPostDto } from '../../presentation/http/routes/posts/dto/request/CreateUserPostDto';
-import { IListPostsQueryDto } from '../../presentation/http/routes/posts/dto/request/IListPostsQueryDto';
+import { ListUserPostsQueryDto } from '../../presentation/http/routes/posts/dto/request/ListPostsQueryDto';
 import { Post, IPaginatedPosts } from './Post';
 
 export interface IPostsRepository {
   create(createPostDto: CreateUserPostDto): Promise<Post>
-  list(query: IListPostsQueryDto): Promise<IPaginatedPosts>
+  list(query: ListUserPostsQueryDto): Promise<IPaginatedPosts>
 }

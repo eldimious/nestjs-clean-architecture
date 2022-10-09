@@ -3,11 +3,12 @@ import {
 } from '@nestjs/common';
 import { JwtAuthGuard } from '../../middleware/JwtStrategy';
 import { IPostsService } from '../../../../domain/posts/IPostsService';
-import { IListPostsQueryDto } from './dto/request/IListPostsQueryDto';
+import { ListPostsQueryDto, ListUserPostsQueryDto } from './dto/request/ListPostsQueryDto';
 import { CreatePostDto } from './dto/request/CreatePostDto';
 import { IPostResponseDto } from './dto/response/IPostResponseDto';
 import { CreateUserPostDto } from './dto/request/CreateUserPostDto';
 import { IListPostsResponseDto } from './dto/response/IListPostsResponseDto';
+import { DEFAULT_PAGINATION_LIMIT, DEFAULT_PAGINATION_PAGE } from "../../../../common/constants";
 
 @Controller('users/me/posts')
 export class PostsController {
@@ -17,8 +18,12 @@ export class PostsController {
 
   @UseGuards(JwtAuthGuard)
   @Get('/')
-  async listPosts(@Req() req: any, @Query() queryParams: IListPostsQueryDto): Promise<IListPostsResponseDto> {
-    const params: IListPostsQueryDto = Object.assign(queryParams, { userId: req.user.userId });
+  async listPosts(@Req() req: any, @Query() queryParams: ListPostsQueryDto): Promise<IListPostsResponseDto> {
+    const params: ListUserPostsQueryDto = Object.assign({
+      userId: req.user.userId,
+      page: DEFAULT_PAGINATION_PAGE,
+      limit: DEFAULT_PAGINATION_LIMIT
+    }, queryParams);
     const res = await this.postsService.listUserPosts(params);
     return {
       data: res.posts.map((el) => el.toPostResponse()),
@@ -34,7 +39,6 @@ export class PostsController {
       userId: req.user.userId,
       ...createPostDto,
     };
-    const post = await this.postsService.createUserPost(newPost);
-    return post;
+    return this.postsService.createUserPost(newPost);
   }
 }

@@ -6,9 +6,8 @@ export class CreateUserPostDto extends CreatePostDto {
   @IsString()
   @IsNotEmpty()
   @ApiProperty({
-    description: 'The firstName of the user',
-    example: 'tw',
+    description: 'The userId of the user',
+    example: '6341785a4eabfd90c2055d16',
   })
-  // @ts-ignore
     userId: string;
 }

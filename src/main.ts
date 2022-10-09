@@ -1,4 +1,4 @@
-import { Logger } from '@nestjs/common';
+import { Logger, ValidationPipe } from '@nestjs/common';
 import { ConfigService } from '@nestjs/config';
 import { NestFactory } from '@nestjs/core';
 import bodyParser from 'body-parser';
@@ -35,6 +35,9 @@ async function bootstrap() {
           '⚠️  Too many request created from this IP, please try again after an hour',
       }),
     );
+    app.useGlobalPipes(new ValidationPipe({
+      disableErrorMessages: true,
+    }));
 
     // REST Global configurations
     // app.useGlobalInterceptors(new LoggingInterceptor());

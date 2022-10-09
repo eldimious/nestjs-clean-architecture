@@ -1,7 +1,7 @@
 import { Inject, Injectable } from '@nestjs/common';
 import { PostsDataStore } from './PostsDataStore';
 import { Post, IPaginatedPosts } from '../../../domain/posts/Post';
-import { IListPostsQueryDto } from '../../../presentation/http/routes/posts/dto/request/IListPostsQueryDto';
+import { ListUserPostsQueryDto } from '../../../presentation/http/routes/posts/dto/request/ListPostsQueryDto';
 import { IPostsRepository } from '../../../domain/posts/IPostsRepository';
 import { CreateUserPostDto } from '../../../presentation/http/routes/posts/dto/request/CreateUserPostDto';
 
@@ -15,7 +15,7 @@ export class PostsRepository implements IPostsRepository {
     return this.postsDataStore.create(createPostDto);
   }
 
-  async list(query: IListPostsQueryDto): Promise<IPaginatedPosts> {
+  async list(query: ListUserPostsQueryDto): Promise<IPaginatedPosts> {
     return this.postsDataStore.list(query);
   }
 }

@@ -3,11 +3,7 @@ import { User } from '../../../domain/users/User';
 import { IUsersRepository } from '../../../domain/users/IUsersRepository';
 import { CreateUserDto } from '../../../presentation/http/routes/users/dto/request/CreateUserDto';
 import { UsersDataStore } from './UsersDataStore';
-
-export interface IGetUserQuery {
-  email: string,
-  userId: string
-}
+import { GetUserQueryDto } from "../../../presentation/http/routes/users/dto/request/GetUserQueryDto";
 
 @Injectable()
 export class UsersRepository implements IUsersRepository {
@@ -19,7 +15,7 @@ export class UsersRepository implements IUsersRepository {
     return this.usersDataStore.create(item);
   }
 
-  async get(query: Partial<IGetUserQuery>): Promise<User> {
+  async get(query: Partial<GetUserQueryDto>): Promise<User> {
     return this.usersDataStore.get(query);
   }
 }
